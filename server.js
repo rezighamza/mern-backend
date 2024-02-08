@@ -8,8 +8,13 @@ const env = require('dotenv').config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const corsOptions = {
-    origin: process.env.FRONTEND_URL,
-}
+    origin: [process.env.FRONTEND_URL],
+    Headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': process.env.FRONTEND_URL,
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+}};
 
 app.use(cors(corsOptions));
 console.log(process.env.FRONTEND_URL);
